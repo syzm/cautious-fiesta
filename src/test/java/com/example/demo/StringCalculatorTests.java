@@ -36,4 +36,17 @@ public class StringCalculatorTests {
         // Then
         assertThat(result).isEqualTo(expected);
     }
+
+    @Test
+    public void whenTwoNumbersCommaDelimited_thenReturnSum() {
+        // Given
+        String twoSeparatedNumbersString = "1,2";
+        int expected = 3;
+
+        // When
+        int result = calculator.calculate(twoSeparatedNumbersString);
+
+        // Then
+        assertThat(result).isEqualTo(expected);
+    }
 }
