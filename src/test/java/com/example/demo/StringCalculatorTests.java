@@ -49,4 +49,30 @@ public class StringCalculatorTests {
         // Then
         assertThat(result).isEqualTo(expected);
     }
+
+    @Test
+    public void whenTwoNumbersNewlineDelimited_thenReturnSum() {
+        // Given
+        String twoSeparatedNumbersString = "1\n2";
+        int expected = 3;
+
+        // When
+        int result = calculator.calculate(twoSeparatedNumbersString);
+
+        // Then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    public void whenThreeNumbersAnyDelimited_thenReturnSum() {
+        // Given
+        String threeNumbersString = "1,2\n3";
+        int expected = 6;
+
+        // When
+        int result = calculator.calculate(threeNumbersString);
+
+        // Then
+        assertThat(result).isEqualTo(expected);
+    }
 }
