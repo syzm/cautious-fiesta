@@ -7,12 +7,18 @@ public class StringCalculator {
             return 0;
         }
 
+        String[] numbers = input.split(",");
+
+        int sum = 0;
         try {
-            return Integer.parseInt(input);
+            for (String number : numbers) {
+                sum += Integer.parseInt(number.trim());
+            }
+            return sum;
         } catch (NumberFormatException e) {
-            // Something
+            // Handle
         }
 
-        return 1; // Placeholder
+        return 0;
     }
 }
