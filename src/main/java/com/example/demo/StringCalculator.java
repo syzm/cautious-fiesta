@@ -1,5 +1,9 @@
 package com.example.demo;
 
+import com.example.demo.exceptions.NegativeNumberException;
+
+import java.util.Arrays;
+
 public class StringCalculator {
 
     public int calculate(String input) {
@@ -7,18 +11,14 @@ public class StringCalculator {
             return 0;
         }
 
-        String[] numbers = input.split("[,\n]");
-
-        int sum = 0;
-        try {
-            for (String number : numbers) {
-                sum += Integer.parseInt(number.trim());
-            }
-            return sum;
-        } catch (NumberFormatException e) {
-            // Handle
-        }
-
-        return 0;
+        return Arrays.stream(input.split("\\r?\\n|,"))
+                .map(String::trim)
+                .mapToInt(Integer::parseInt)
+                .peek(number -> {
+                    if (number < 0) {
+                        throw new NegativeNumberException("Negative numbers not allowed: " + number);
+                    }
+                })
+                .sum();
     }
 }

@@ -1,9 +1,11 @@
 package com.example.demo;
 
+import com.example.demo.exceptions.NegativeNumberException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StringCalculatorTests {
     private StringCalculator calculator;
@@ -74,5 +76,15 @@ public class StringCalculatorTests {
 
         // Then
         assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    public void whenNegativeNumbers_throwAnException() {
+        // Given
+        String negativeNumberString = "-1, 2";
+
+        // When + Then
+        assertThrows(NegativeNumberException.class,
+                () -> calculator.calculate(negativeNumberString));
     }
 }
